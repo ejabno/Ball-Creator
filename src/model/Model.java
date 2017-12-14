@@ -48,7 +48,7 @@ public class Model implements Runnable, InfoProvider {
     public synchronized void createBall(int xLoc, int yLoc) {
         Random rand = new Random();
         int diameter = rand.nextInt(maxBallSize) + minBallSize;
-        int deltaD = rand.nextInt(5) + 1;
+        int deltaD = rand.nextInt(3) + 1;
         Color color = new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
         Ball newB = new Ball(xLoc, yLoc, diameter, deltaD, color);
         ballsList.add(newB);

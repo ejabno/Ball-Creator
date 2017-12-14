@@ -61,6 +61,10 @@ public class View extends JFrame {
         @Override
         protected synchronized void paintComponent(Graphics g) {
             super.paintComponent(g);
+            Graphics2D g2 = (Graphics2D) g;
+            RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setRenderingHints(rh);
+
             LinkedList<Ball> balls = infoProvider.getBallsList();
             ListIterator ballsList = balls.listIterator();
             try {
@@ -71,8 +75,8 @@ public class View extends JFrame {
                     int diameter = b.getDiameter();
                     int radius = b.getDiameter() / 2;
                     Color c = b.getColor();
-                    g.fillOval(x - radius, y - radius, diameter, diameter);
-                    g.setColor(c);
+                    g2.fillOval(x - radius, y - radius, diameter, diameter);
+                    g2.setColor(c);
                 }
             }
             catch (ConcurrentModificationException e) {}

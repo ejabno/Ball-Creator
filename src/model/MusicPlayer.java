@@ -36,7 +36,7 @@ public class MusicPlayer implements MusicInfoProvider{
 
         gainControlLeft.setValue(gainToDb(0));
         gainControlRight.setValue(gainToDb(0));
-        gainControlBG.setValue(gainToDb(0.25));
+        gainControlBG.setValue(gainToDb(0.50));
 
         FloatControl leftPan = (FloatControl) leftMouseClip.getControl(FloatControl.Type.PAN);
         leftPan.setValue((float) -1);
