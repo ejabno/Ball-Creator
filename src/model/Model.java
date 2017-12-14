@@ -6,14 +6,21 @@ import java.util.ListIterator;
 import java.util.Random;
 
 public class Model implements Runnable, InfoProvider {
+    private static int UPDATERATE = 13;
+
     private int maxBallSize, minBallSize;
     private Observer observer;
     private LinkedList<Ball> ballsList;
+    private int totalBallCountEver;
+    private MusicPlayer musicPlayer;
 
     public Model(int min, int max) {
         maxBallSize = max;
         minBallSize = min;
         ballsList = new LinkedList<Ball>();
+        totalBallCountEver = 0;
+
+        musicPlayer = new MusicPlayer();
     }
 
     public void addObserver(Observer obs) {
@@ -45,6 +52,7 @@ public class Model implements Runnable, InfoProvider {
         Color color = new Color(rand.nextFloat(), rand.nextFloat(), rand.nextFloat());
         Ball newB = new Ball(xLoc, yLoc, diameter, deltaD, color);
         ballsList.add(newB);
+        totalBallCountEver++;
     }
 
     public void start() {
@@ -63,7 +71,7 @@ public class Model implements Runnable, InfoProvider {
                 checkVisiBalls();
                 shrinkBalls();
                 notifyObserver();
-                Thread.sleep(20);
+                Thread.sleep(UPDATERATE);
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
@@ -76,4 +84,18 @@ public class Model implements Runnable, InfoProvider {
     public LinkedList<Ball> getBallsList() {
         return ballsList;
     }
+
+    @Override
+    public int getTotalBallCountEver() {
+        return totalBallCountEver;
+    }
+
+    public void musicPlayerToggleLeft() {
+        musicPlayer.toggleLeftLoop();
+    }
+
+    public void musicPlayerToggleRight() {
+        musicPlayer.toggleRightLoop();
+    }
+
 }

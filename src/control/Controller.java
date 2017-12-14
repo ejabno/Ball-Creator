@@ -43,9 +43,11 @@ public class Controller implements MouseListener, Runnable {
         switch (m.getButton()) {
             case MouseEvent.BUTTON1:
                 leftMouseHeld = true;
+                model.musicPlayerToggleLeft();
                 break;
             case MouseEvent.BUTTON3:
                 rightMouseHeld = true;
+                model.musicPlayerToggleRight();
                 break;
         }
     }
@@ -55,9 +57,11 @@ public class Controller implements MouseListener, Runnable {
         switch (m.getButton()) {
             case MouseEvent.BUTTON1:
                 leftMouseHeld = false;
+                model.musicPlayerToggleLeft();
                 break;
             case MouseEvent.BUTTON3:
                 rightMouseHeld = false;
+                model.musicPlayerToggleRight();
                 break;
         }
     }
