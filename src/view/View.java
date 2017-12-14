@@ -48,7 +48,7 @@ public class View extends JFrame {
         }
 
         @Override
-        protected void paintComponent(Graphics g) {
+        protected synchronized void paintComponent(Graphics g) {
             super.paintComponent(g);
             LinkedList<Ball> balls = infoProvider.getBallsList();
             ListIterator ballsList = balls.listIterator();

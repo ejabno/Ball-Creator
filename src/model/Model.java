@@ -20,7 +20,7 @@ public class Model implements Runnable, InfoProvider {
         observer = obs;
     }
 
-    public void shrinkBalls() {
+    public synchronized void shrinkBalls() {
         ListIterator ballIt = ballsList.listIterator();
         while (ballIt.hasNext()) {
             Ball b = (Ball) ballIt.next();
@@ -28,7 +28,7 @@ public class Model implements Runnable, InfoProvider {
         }
     }
 
-    public void checkVisiBalls() {
+    public synchronized void checkVisiBalls() {
         ListIterator ballIt = ballsList.listIterator();
         while (ballIt.hasNext()) {
             Ball b = (Ball) ballIt.next();
@@ -38,7 +38,7 @@ public class Model implements Runnable, InfoProvider {
         }
     }
 
-    public void createBall(int xLoc, int yLoc) {
+    public synchronized void createBall(int xLoc, int yLoc) {
         Random rand = new Random();
         int diameter = rand.nextInt(maxBallSize) + minBallSize;
         int deltaD = rand.nextInt(5) + 1;
